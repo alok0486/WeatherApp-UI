@@ -1,21 +1,37 @@
 <!--The content below is only a placeholder and can be replaced.-->
+
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  <img width="60" alt="Angular Logo" 
+       src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<p>Please select city from the list to check Weather Info</p>
+<form [formGroup]="countryForm">
+    <select style='height: 40px;width: 200px;font-size: 20px;font-stretch: normal;font-family: fantasy;border-color: chocolate;background-color: #efebe3;' 
+          formControlName="countryControl" (change)='selectChange($event)' [value]='selectedValue'>
+      <option value='select'>Please Select City</option>
+      <option [value]="city.id" *ngFor="let city of cities" name='city.id' >{{city.name}}</option>
+    </select>
+</form>
+<div style="margin-top: 25px;" *ngFor="let item of weatherList">
+  
+  <span *ngIf="item.pubDate">Current Date :- {{item.pubDate}}</span>
+  <span *ngIf="item.temperature"> Today's Temperature :- {{item.temperature}} </span>
+  <span *ngIf="item.text">Today's Temperature Condition :-  {{item.text}}</span>
+ 
+  <span *ngIf="item.minTempForecast">Min Temparature in next 10 Days :-  {{item.minTempForecast}}</span>
+  <span *ngIf="item.minTempForecastDate">Min Temparature in next 10 Days will be on :- {{item.minTempForecastDate}}</span> 
+  <span *ngIf="item.maxTempForecast">Max Temparature in next 10 Days  :-  {{item.maxTempForecast}} </span>
+  <span *ngIf="item.maxTempForecastDate">Max Temparature in next 10 Days will be on :-  {{item.maxTempForecastDate}}</span>
 
-<router-outlet></router-outlet>
+  <span *ngIf="item.avgMinTempForecast">Average High Temparature in next 10 Days :-  {{item.avgMinTempForecast}}</span>
+  <span *ngIf="item.avgMaxTempForecast">Average Low Temparature in next 10 Days :-  {{item.avgMaxTempForecast}}</span>
+
+  <span *ngIf="item.middleMinTempForecast">Middle Low Temparature in next 10 Days :-  {{item.middleMinTempForecast}}</span>
+  <span *ngIf="item.middleMaxTempForecast">Middle High Temparature in next 10 Days :-  {{item.middleMaxTempForecast}}</span>
+
+  <span *ngIf="item.minFrequencyTempForecast">Min Temparature on the basis of Frequency in next 10 Days :-  {{item.minFrequencyTempForecast}}</span>
+  <span *ngIf="item.maxFrequencyTempForecast">Max Temparature on the basis of Frequency in next 10 Days :-  {{item.maxFrequencyTempForecast}}</span>
+</div>

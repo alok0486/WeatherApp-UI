@@ -38,7 +38,7 @@ export class AppComponent {
 
   getWeatherInfo(city: string, country: string){
     return this.http
-      .get<any[]>('http://localhost:8080/weatherInfo/'+city+'/ca')
+      .get<any[]>('http://localhost:8080/weather/weatherInfo/'+city+'/ca')
       .pipe(map(data => data)
       );
     }
